@@ -15,7 +15,12 @@ public class recursionapnac {
 //        remove("bhavyagupptaa",0,new StringBuilder(""),new boolean[26]);
 //        System.out.println(friendspairing(5));
 //        bstring(3,0,"");
-        indexofoccurence(arr,2,0);
+//        indexofoccurence(arr,2,0);
+//        numtostring(1947);
+//        System.out.println(lengthOfString("bhavya"));
+//        String str ="abc";
+//        System.out.println(countSubstrs(str,0,str.length()-1));
+        towerOfHanoi(1,"SOURCE","HELPER","DESTINATION");
     }
     static void recur(int n){
         if(n==0){
@@ -159,5 +164,54 @@ public class recursionapnac {
         }
         indexofoccurence(arr,key,index+1);
     }
+    
+    //change number to string of same number
+
+    static void numtostring(int number){
+        String[] arr={"zero ","one ","two ","three ","four ","five ","six ","seven ","eight ","nine "};
+        if(number==0){
+            return;
+        }
+        numtostring(number/10);
+        int last = number%10;
+        System.out.print(arr[last]);
+    }
+    //LENGTH OF A STRING
+    static int lengthOfString(String str){
+        int length=str.length();
+        if(length==0){
+            return 0;
+        }
+        return lengthOfString(str.substring(1))+1;
+    }
+
+    public static int countSubstrs(String str, int i, int j) {
+        if (i > j) return 0;         // No valid substring
+        if (i == j) return 1;        // Single character: always valid
+
+        int res = countSubstrs(str, i + 1, j)
+                + countSubstrs(str, i, j - 1)
+                - countSubstrs(str, i + 1, j - 1);
+
+        if (str.charAt(i) == str.charAt(j)) {
+            res++;
+        }
+
+        return res;
+    }
+
+    public static void towerOfHanoi(int n, String src, String helper, String dest) {
+        if(n == 1) {
+            System.out.println("transfer disk " + n + " from " + src + " to " + dest);
+            return;
+        }
+        //transfer top n-1 from src to helper using dest as 'helper'
+        towerOfHanoi(n-1, src, dest, helper);
+        //transfer nth from src to dest
+        System.out.println("transfer disk " + n + " from " + src + " to " + dest);
+        //transfer n-1 from helper to dest using src as 'helper'
+        towerOfHanoi(n-1, helper, src, dest);
+    }
 }
+
 
