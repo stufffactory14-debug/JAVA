@@ -10,7 +10,12 @@ public class recursionapnac {
 //        System.out.println(lastoccurence(arr,5,arr.length-1));
 //        System.out.println(lastoccurence2(arr,5,0));
 //        System.out.println(power(2,4));
-        System.out.println(optimizepower(2,5));
+//         System.out.println(optimizepower(2,5));
+//        System.out.println(tileprblem(3));
+//        remove("bhavyagupptaa",0,new StringBuilder(""),new boolean[26]);
+//        System.out.println(friendspairing(5));
+//        bstring(3,0,"");
+        indexofoccurence(arr,2,0);
     }
     static void recur(int n){
         if(n==0){
@@ -94,4 +99,65 @@ public class recursionapnac {
         }
         return halfpower;
     }
+    
+    //TILE PROBLEM
+    static int tileprblem(int n){
+        if(n==0 || n==1){
+            return 1;
+        }
+        return tileprblem(n-1)+tileprblem(n-2);
+    }
+    //REMOVE DUPLICATES USING REC
+    static void remove(String str,int index,StringBuilder newstr,boolean[] arr){
+        if(index==str.length()){
+            System.out.println(newstr);
+            return;
+        }
+        char ch = str.charAt(index);
+        if(arr[ch-'a']==true){
+            remove(str,index+1,newstr,arr);
+        }else{
+            arr[ch-'a']=true;
+            remove(str,index+1,newstr.append(ch),arr);
+        }
+    }
+    //GOLDMAN COMPANY
+    static int friendspairing(int n){
+        if(n==1 || n==2){
+            return n;
+        }
+        //single pair is friendspairing(n-1)
+        int s=friendspairing(n-1);
+        //couple paring is n-1*friendsparing(n-2)
+        int c=friendspairing(n-2);
+        int total = n-1*c;
+
+        int result = s+total;
+        return result;
+
+        //return friendspairing(n-1)+n-1*friendspairing(n-2);
+    }
+    //BINARY STRING ASKED IN PAYTM
+    static void bstring(int n,int lastindex,String str){
+        if(n==0){
+            System.out.println(str);
+            return;
+        }
+        bstring(n-1,0,str+"0");
+        if(lastindex==0){
+            bstring(n-1,1,str+="1");
+        }
+    }
+    //how many time key is occured return index of that
+    static void indexofoccurence(int[] arr,int key , int index){
+        if(index==arr.length){
+            return;
+        }
+
+        if(arr[index]==key){
+            System.out.print(index);
+        }
+        indexofoccurence(arr,key,index+1);
+    }
 }
+
