@@ -229,11 +229,47 @@ public class LinkedList {
 //        ll.deleteFromNthNode(4);
 //        ll.print();
 
+        // ll.addFirst(1);
+        // ll.addFirst(2);
+        // ll.addFirst(2);
+        // ll.addFirst(1);
+        // ll.print();
+        // System.out.println(ll.checkPalindrome());
+
+        //cycle detection ( infinite cycle Nodes )
+      /*  head=new Node(1);
+        Node temp=new Node(2);
+        head.next= temp  ;
+        head.next.next=new Node(3);
+        head.next.next.next=head;
+
+        System.out.println(ll.cycle());
+        ll.removeCycle();
+        System.out.println(ll.cycle());
+
+        ll.print();
+
+       */
+        /*
+        LinkedList LL = new LinkedList();
         ll.addFirst(1);
         ll.addFirst(2);
+        ll.addFirst(3);
+        ll.addFirst(4);
+        ll.addFirst(5);
+        ll.print();
+        ll.head=ll.mergeSort(ll.head);
+        ll.print();
+
+         */
+        LinkedList LL = new LinkedList();
+        ll.addFirst(5);
+        ll.addFirst(4);
+        ll.addFirst(3);
         ll.addFirst(2);
         ll.addFirst(1);
         ll.print();
-        System.out.println(ll.checkPalindrome());
+       ll.zigZag(head);
+       ll.print();
     }
 }
