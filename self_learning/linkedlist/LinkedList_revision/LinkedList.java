@@ -213,6 +213,200 @@ public class LinkedList {
         return true;
 
     }
+
+     public boolean cycle(){
+        Node slow =head;
+        Node fast = head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(fast==slow){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void removeCycle(){
+        Node slow=head;
+        Node fast=head;
+        boolean cycle=false;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                cycle=true;
+                break;
+            }
+        }
+
+        if(cycle) {
+            Node prev=null;
+            slow = head;
+            while (fast != slow) {
+                prev = fast;
+                fast = fast.next;
+                slow = slow.next;
+
+            }
+            if (prev == null) {
+                while (fast.next != slow) {
+                    fast = fast.next;
+                }
+                fast.next = null;
+            } else {
+                prev.next = null;
+            }
+
+        }
+
+    }
+
+    //MERGE SORT
+    private static void mergeSort(int[] arr, int start, int end) {
+        if (start >= end) {
+            return; // Base case: single element
+        }
+
+        int mid = start + (end - start) / 2;
+
+       
+        mergeSort(arr, start, mid);
+        mergeSort(arr, mid + 1, end);
+
+       
+        merge(arr, start, mid, end);
+    }
+
+    // Function to merge two sorted halves
+    private static void merge(int[] arr, int start, int mid, int end) {
+        int n1 = mid - start + 1;
+        int n2 = end - mid;
+
+        int[] left = new int[n1];
+        int[] right = new int[n2];
+
+        // Copy data to temp arrays
+        for (int i = 0; i < n1; i++)
+            left[i] = arr[start + i];
+        for (int j = 0; j < n2; j++)
+            right[j] = arr[mid + 1 + j];
+
+        // Merge the temp arrays
+        int i = 0, j = 0, k = start;
+        while (i < n1 && j < n2) {
+            if (left[i] <= right[j]) {
+                arr[k] = left[i];
+                i++;
+            } else {
+                arr[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements (if any)
+        while (i < n1) {
+            arr[k] = left[i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            arr[k] = right[j];
+            j++;
+            k++;
+        }
+    }
+
+    public Node getMid(Node head){
+        Node slow=head;
+        Node fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+
+    private Node merge(Node head1,Node head2){
+        Node mergedLL= new Node(-1);
+        Node temp = mergedLL;
+
+        while(head1!=null && head2 !=null){
+            if(head1.data<=head2.data){
+                temp.next=head1;
+                head1=head1.next;
+                temp=temp.next;
+            }else{
+                temp.next=head2;
+                head2=head2.next;
+                temp=temp.next;
+            }
+        }
+        while(head1!=null){
+            temp.next=head1;
+            head1=head1.next;
+            temp=temp.next;
+        }
+        while(head2!=null){
+            temp.next=head2;
+            head2=head2.next;
+            temp=temp.next;
+        }
+        return mergedLL.next;
+    }
+       public Node mergeSort(Node head){
+        if(head==null ||  head.next==null){
+            return head;
+        }
+        //find mid
+        Node mid=getMid(head);
+
+//        left and right ms
+        Node rightHead=mid.next;
+        mid.next=null;
+        Node newLeft=mergeSort(head);
+        Node newRight=mergeSort(rightHead);
+
+        return merge(newLeft,newRight);
+    }
+
+    public Node zigZag(Node head){
+        Node res = new Node(-1);
+        Node temp = res;
+
+        //find mix
+        Node mid= findMid(head);
+        Node curr= mid.next;
+        mid.next=null;
+        Node prev=null;
+        Node next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+
+        Node right=prev;
+        Node left=head;
+
+        while(right!=null && left!=null){
+            temp.next=left;
+            left=left.next;
+            temp=temp.next;
+            temp.next=right;
+            right=right.next;
+            temp=temp.next;
+        }
+        if (left != null) temp.next = left;
+        if (right != null) temp.next = right;
+        return res.next;
+
+    }
+    
     static void main(String[] args) {
         LinkedList ll = new LinkedList();
 //        ll.addFirst(24);
