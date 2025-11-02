@@ -1,0 +1,4 @@
+IF WE WANT TO ROTATE AND 2D MATRIX BY 
+90 deg of orignal matrix = transpose + reverse row
+180  deg of orignal matrix = reverse row + reverse column
+270  deg of orignal matrix = transpose + reverse col
