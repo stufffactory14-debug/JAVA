@@ -88,6 +88,15 @@ public class BinaryTree1 {
                 }
             }
         }
+        public static int heightOfTree(Node root){
+            if(root==null){
+                return 0;
+            }
+            int lh=heightOfTree(root.left);
+            int rh=heightOfTree(root.right);
+            return Math.max(lh,rh)+1;
+
+        }
     }
 
     static void main(String[] args) {
