@@ -109,6 +109,7 @@ public class BinaryTree1 {
 //        bt.inorder(root);
 //        bt.postorder(root);
         bt.levelOrder(root);
+        System.out.println(bt.heightOfTree(root));
 
     }
 }
