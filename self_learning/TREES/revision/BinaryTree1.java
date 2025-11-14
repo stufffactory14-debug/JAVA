@@ -97,6 +97,22 @@ public class BinaryTree1 {
             return Math.max(lh,rh)+1;
 
         }
+
+          static int countOfNode(Node root){
+            if(root==null){
+                return 0;
+            }
+            int left = countOfNode(root.left);
+            int right = countOfNode(root.right);
+            return left+right+1;
+        }
+        static int sumOfNodes(Node root){
+            if(root==null) return 0;
+            
+            int left = sumOfNodes(root.left);
+            int right = sumOfNodes(root.right);
+            return left+right+root.data;
+        }
     }
 
     static void main(String[] args) {
