@@ -82,8 +82,9 @@ public class buildtree {
        // BinaryTree.inorder(root);
        // BinaryTree.postorder(root);
       //  BinaryTree.levelOrder(root);
-        System.out.println(BinaryTree.heightOfTree(root));
+         //  System.out.println(BinaryTree.heightOfTree(root));
+        //  System.out.println(BinaryTree.countOfNodes(root));
+        System.out.println(BinaryTree.sumOfNodes(root));
     }
-
     }
 
