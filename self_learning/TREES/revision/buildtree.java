@@ -80,7 +80,9 @@ public class buildtree {
         Node root =BinaryTree.buildtree(nodes);
         //System.out.println(root.data);
        // BinaryTree.inorder(root);
-        BinaryTree.postorder(root);
+       // BinaryTree.postorder(root);
+      //  BinaryTree.levelOrder(root);
+        System.out.println(BinaryTree.heightOfTree(root));
     }
 
     }
