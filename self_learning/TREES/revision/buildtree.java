@@ -47,6 +47,32 @@ public class buildtree {
             System.out.print(root.data + " ");
 
         }
+         static void levelOrder(Node root){
+            if(root==null) return;
+
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            q.add(null);
+
+            while(!q.isEmpty()){
+                Node current = q.remove();
+                if(current==null){
+                    System.out.println();
+                    if(q.isEmpty()){
+                        break;
+                    }else{
+                        q.add(null);
+                    }
+                }else{
+                    System.out.print(current.data+" ");
+                    if(current.left!=null){
+                        q.add(current.left);
+                    }if(current.right!=null){
+                        q.add(current.right);
+                    }
+                }
+            }
+
     }
     static void main(String[] args) {
         int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
