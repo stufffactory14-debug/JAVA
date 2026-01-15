@@ -73,6 +73,32 @@ public class buildtree {
                 }
             }
 
+              static int heightOfTree(Node root){
+            if(root== null){
+                return 0;
+            }
+            int lh = heightOfTree(root.left);
+            int rh = heightOfTree(root.right);
+            int height= Math.max(lh,rh)+1;
+            return height;
+        }
+
+        static int countOfNodes(Node root){
+            if(root==null) return 0;
+
+            int lh = countOfNodes(root.left);
+            int rh = countOfNodes(root.right);
+            return lh+rh+1;
+        }
+
+         static int sumOfNodes(Node root){
+            if(root==null) return 0;
+
+            int lh = sumOfNodes(root.left);
+            int rh = sumOfNodes(root.right);
+            return lh+rh+root.data;
+        }
+
     }
     static void main(String[] args) {
         int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
