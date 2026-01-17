@@ -99,6 +99,47 @@ public class buildtree {
             return lh+rh+root.data;
         }
 
+        static int diameter(Node root){
+            if(root==null) return 0;
+
+            int leftdia=diameter(root.left);
+            int leftheight=heightOfTree(root.left);
+            int rightdia=diameter(root.right);
+            int rightheight=heightOfTree(root.right);
+
+            int selfdia = leftheight+rightheight+1;
+            return Math.max(selfdia,(Math.max(leftdia,rightdia)));
+        }
+
+
+
+        public static boolean isIdentical(Node root1,Node subRoot){
+            if(root1 ==null && subRoot==null){
+                return true;
+            }else if(root1 == null || subRoot == null || root1.data != subRoot.data){
+                return false;
+            }
+
+            if(!isIdentical(root1.left,subRoot.left)) return false;
+            if(!isIdentical(root1.right,subRoot.right)) return false;
+
+            return true;
+        }
+        public static boolean isSubtree(Node root1,Node subRoot){
+            if(root1==null){
+                return false;
+            }
+            if(root1.data==subRoot.data){
+                if(isIdentical(root1,subRoot)){
+                    return true;
+                }
+            }
+            boolean left = isSubtree(root1.left,subRoot); // if exist in ls then true else false
+            boolean right = isSubtree(root1.right,subRoot); // if exist in rs then true else false
+
+            return left || right;
+        }
+
     }
     static void main(String[] args) {
         int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
