@@ -140,6 +140,72 @@ public class buildtree {
             return left || right;
         }
 
+        static class Info{
+            Node node;
+            int hd;
+
+            public Info(Node node,int hd){
+                this.node=node;
+                this.hd=hd;
+            }
+        }
+        public static void topView(Node root1){
+            //level order
+
+            Queue<Info> q = new LinkedList<>();
+            HashMap<Integer,Node> map = new HashMap<>();
+
+            int min =0,max=0;
+            q.add(new Info(root1,0));
+            q.add(null);
+
+            while(!q.isEmpty()){
+                Info current = q.remove();
+                if(current ==null){
+                    if(q.isEmpty()){
+                        break;
+                    }else{
+                        q.add(null);
+                    }
+                }else{
+                    if(!map.containsKey(current.hd)){
+                        map.put(current.hd,current.node);
+                    }
+
+                    if(current.node.left!=null){
+                        q.add(new Info(current.node.left,current.hd-1));
+                        min = Math.min(min,current.hd-1);
+                    }
+                    if(current.node.right!=null){
+                        q.add(new Info(current.node.right,current.hd+1));
+                        max = Math.max(max,current.hd+1);
+                    }
+                }
+
+
+
+
+
+            }
+            for(int i=min;i<=max;i++){
+                System.out.print(map.get(i).data + " ");
+            }
+            System.out.println();
+        }
+
+        static void kthlvl(Node root,int level,int k){
+            if(root == null){
+                return;
+            }
+            if(level==k){
+                System.out.print(root.data+" ");
+                return;
+            }
+            kthlvl(root.left,level+1,k);
+            kthlvl(root.right,level+1,k);
+        }
+
+
     }
     static void main(String[] args) {
         int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
