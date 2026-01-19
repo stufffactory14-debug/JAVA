@@ -245,7 +245,18 @@ public class buildtree {
 //        root1.right.right = new Node(7);
 //        BinaryTree.topView(root1);
 
-        BinaryTree.kthlvl(root,1,3);
+       
+//        BinaryTree.kthlvl(root,1,3);
+
+        Node root5 = new Node(1);
+        root5.left = new Node(2);
+        root5.right = new Node(3);
+        root5.left.left = new Node(4);
+        root5.left.right = new Node(5);
+        root5.right.left = new Node(6);
+        root5.right.right = new Node(7);
+
+        System.out.println(BinaryTree.lca(root5,4,7));
     }
     }
 
